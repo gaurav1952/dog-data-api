@@ -33,7 +33,7 @@ app.get('/dogs', async (req,res)=>{
 	 // SQL query with pagination
 	 const sql = `SELECT * FROM dog_breeds LIMIT ? OFFSET ?`;
 	try{
-		db.all(sql, [limit,of],(err,row)=>{
+		db.all(sql, [limit,offset],(err,row)=>{
 			if (err) return res.json({
 				status: res.status(400),
 				message: "Wrong route"
