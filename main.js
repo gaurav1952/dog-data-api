@@ -50,8 +50,8 @@ app.get('/dogs', async (req,res)=>{
 		
 			return res.json({status: 200, data: row, success: true})
 		})
-	}catch{
-		return res.status(500).json({message: "Server error"})
+	}catch(err){
+		return res.status(500).json({message: err})
 	}
 
 })
