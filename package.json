@@ -1,14 +1,14 @@
 {
-  "name": "topdog_api",
+  "name": "dogs_api",
   "version": "1.0.0",
-  "description": "",
+  "description": "An API for dog breeds",
   "main": "main.js",
   "scripts": {
     "start": "node main.js",
     "dev": "nodemon main.js"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["API", "dog breeds", "express", "sqlite"],
+  "author": "Sloth",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
@@ -17,5 +17,8 @@
   },
   "devDependencies": {
     "nodemon": "^3.1.4"
+  },
+  "engines": {
+    "node": ">=20.11.1"
   }
 }

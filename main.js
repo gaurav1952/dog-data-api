@@ -10,17 +10,11 @@ const db = new sqlite.Database("./dog-breeds.db",sqlite.OPEN_READONLY, (err)=>{
 //middlewere
 app.use(cors())
 app.use(express.json())
-//data for now 
-// let books = [];
 
-// app.post('/book', (req,res)=>{
-// 	//logic to post data 
-	
-// })
 
 app.get('/dogs', (req,res)=>{
 	//logic to get data 
-	sql = 'SELECT * FROM dog_breeds';
+	const sql = 'SELECT * FROM dog_breeds';
 	try{
 		db.all(sql, [],(err,row)=>{
 			if (err) return res.json({
@@ -36,16 +30,6 @@ app.get('/dogs', (req,res)=>{
 	}
 
 })
-
-// app.get('/book/:id', (req, res)=>{
-// 	//logic to get single data
-// })
-// app.put('/book/:id', (req,res)=>{
-// 	//logic to update data
-// })
-// app.delete('/book/:id', (req, res)=>{
-// 	//logic to delete the data
-// })
 
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
