@@ -40,7 +40,7 @@ app.get('/dogs', async (req,res)=>{
 			})
 			if (row.length<1) return res.status(200).json({
 				status: 200,
-				data: rows,
+				data: row,
 				success: true,
 				pagination: {
 				  page: page,
