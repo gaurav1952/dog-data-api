@@ -16,16 +16,37 @@ app.get('/', (req, res)=>{
 	res.send("hello world")
 })
 
-app.get('/dogs', (req,res)=>{
+app.get('/dogs', async (req,res)=>{
 	//logic to get data 
-	const sql = 'SELECT * FROM dog_breeds';
+	 // Get pagination parameters from query string
+	 const page = parseInt(req.query.page) || 1; // default to page 1 if not provided
+	 const limit = parseInt(req.query.limit) || 10; // default to 10 items per page if not provided
+   
+	 // Validate pagination parameters
+	 if (page < 1 || limit < 1) {
+	   return res.status(400).json({ status: 400, message: "Invalid pagination parameters" });
+	 }
+   
+	 // Calculate offset for the query
+	 const offset = (page - 1) * limit;
+   
+	 // SQL query with pagination
+	 const sql = `SELECT * FROM dog_breeds LIMIT ? OFFSET ?`;
 	try{
-		db.all(sql, [],(err,row)=>{
+		db.all(sql, [limit,of],(err,row)=>{
 			if (err) return res.json({
 				status: res.status(400),
 				message: "Wrong route"
 			})
-			if (row.length<1) return res.json({status:300,success: false, error: "No match" })
+			if (row.length<1) return res.status(200).json({
+				status: 200,
+				data: rows,
+				success: true,
+				pagination: {
+				  page: page,
+				  limit: limit,
+				},
+			  });
 		
 			return res.json({status: 200, data: row, success: true})
 		})
