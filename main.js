@@ -12,6 +12,10 @@ app.use(cors())
 app.use(express.json())
 
 
+app.get('/', (req, res)=>{
+	res.send("hello world")
+})
+
 app.get('/dogs', (req,res)=>{
 	//logic to get data 
 	const sql = 'SELECT * FROM dog_breeds';
